@@ -9,7 +9,7 @@ import com.ti.blog.entity.User;
 public interface UserService {
     User getUser(Long id);
 
-    User saveUser(User student);
+    User saveUser(User user);
 
     void deleteUser(Long id);
 

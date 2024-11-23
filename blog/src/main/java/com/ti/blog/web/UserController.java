@@ -27,33 +27,34 @@ import lombok.AllArgsConstructor;
 public class UserController {
 
     @Autowired
-    UserService studentService;
+    UserService userService;
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
-        return new ResponseEntity<>(studentService.getUser(id), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<User> saveUser(@Valid @RequestBody User student) {
-        return new ResponseEntity<>(studentService.saveUser(student), HttpStatus.CREATED);
+    public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
+        System.out.println("=====================>" + user);
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteUser(@PathVariable Long id) {
-        studentService.deleteUser(id);
+        userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<User>> getUsers() {
-        return new ResponseEntity<>(studentService.getUsers(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
     // @GetMapping("/{id}/courses")
     // public ResponseEntity<Set<Course>> getEnrolledCourses(@PathVariable Long id)
     // {
-    // return new ResponseEntity<>(studentService.getEnrolledCourses(id),
+    // return new ResponseEntity<>(userService.getEnrolledCourses(id),
     // HttpStatus.OK);
     // }
 

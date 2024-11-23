@@ -17,27 +17,28 @@ import lombok.AllArgsConstructor;
 @Service
 public class UserServiceImpl implements UserService {
 
-    UserRepository studentRepository;
+    UserRepository userRepository;
 
     @Override
     public User getUser(Long id) {
-        Optional<User> student = studentRepository.findById(id);
-        return unwrapUser(student, id);
+        Optional<User> user = userRepository.findById(id);
+        return unwrapUser(user, id);
     }
 
     @Override
-    public User saveUser(User student) {
-        return studentRepository.save(student);
+    public User saveUser(User user) {
+        System.out.println("======================>" + user);
+        return userRepository.save(user);
     }
 
     @Override
     public void deleteUser(Long id) {
-        studentRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
     public List<User> getUsers() {
-        return (List<User>) studentRepository.findAll();
+        return (List<User>) userRepository.findAll();
     }
 
     // @Override
