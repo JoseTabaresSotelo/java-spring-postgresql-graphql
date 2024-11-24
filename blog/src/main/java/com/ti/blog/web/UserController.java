@@ -36,7 +36,6 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
-        System.out.println("=====================>" + user);
         return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 

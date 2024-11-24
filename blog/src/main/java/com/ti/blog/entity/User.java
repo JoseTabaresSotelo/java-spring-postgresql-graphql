@@ -1,11 +1,17 @@
 package com.ti.blog.entity;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.FutureOrPresent;
@@ -58,7 +64,7 @@ public class User {
 
     // @JsonIgnore
     // @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-    // private List<Grade> grades;
+    // private List<Post> posts;
 
     // @JsonIgnore
     // @ManyToMany

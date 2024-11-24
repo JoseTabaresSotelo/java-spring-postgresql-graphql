@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -50,11 +52,6 @@ public class Post {
     @Column(name = "commentId")
     private String commentId;
 
-    @NotBlank(message = "Name cannot be blank")
-    @NonNull
-    @Column(name = "userId")
-    private String userId;
-
     @FutureOrPresent(message = "The birth date must be in the present")
     @NonNull
     @Column(name = "created_at", nullable = false)
@@ -65,4 +62,7 @@ public class Post {
     @Column(name = "update_at", nullable = false)
     private LocalDate updatedAt;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }

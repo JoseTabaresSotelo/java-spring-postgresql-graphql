@@ -22,11 +22,6 @@ public class Comment {
     @NotBlank(message = "Name cannot be blank")
     @NonNull
     @Column
-    private String author;
-
-    @NotBlank(message = "Name cannot be blank")
-    @NonNull
-    @Column
     private String content;
 
     @NotBlank(message = "Name cannot be blank")
@@ -44,4 +39,7 @@ public class Comment {
     @Column(name = "update_at", nullable = false)
     private LocalDate updatedAt;
 
+    // @ManyToOne(optional = false)
+    // @JoinColumn(name = "user_id", referencedColumnName = "id")
+    // private User user;
 }
