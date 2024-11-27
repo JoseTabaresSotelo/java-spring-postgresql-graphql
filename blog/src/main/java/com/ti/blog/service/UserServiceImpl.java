@@ -1,5 +1,6 @@
 package com.ti.blog.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -27,7 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User saveUser(User user) {
-        System.out.println("======================>" + user);
+        user.setCreatedAt(LocalDate.now());
+        user.setUpdatedAt(LocalDate.now());
+
         return userRepository.save(user);
     }
 
@@ -40,12 +43,6 @@ public class UserServiceImpl implements UserService {
     public List<User> getUsers() {
         return (List<User>) userRepository.findAll();
     }
-
-    // @Override
-    // public Set<Course> getEnrolledCourses(Long id) {
-    // User student = getUser(id);
-    // return student.getCourses();
-    // }
 
     static User unwrapUser(Optional<User> entity, Long id) {
         if (entity.isPresent())

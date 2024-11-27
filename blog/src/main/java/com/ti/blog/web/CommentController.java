@@ -1,5 +1,7 @@
 package com.ti.blog.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,9 +32,15 @@ public class CommentController {
         return new ResponseEntity<>(commentService.getComment(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Comment> postMethodName(@Valid @RequestBody Comment comment) {
-        return new ResponseEntity<>(commentService.saveComment(comment), HttpStatus.CREATED);
+    @GetMapping("/all")
+    public ResponseEntity<List<Comment>> getComments() {
+        return new ResponseEntity<>(commentService.getComments(), HttpStatus.OK);
+    }
+
+    @PostMapping("/user/{userId}/post/{postId}")
+    public ResponseEntity<Comment> postMethodName(@Valid @RequestBody Comment comment, @PathVariable Long userId,
+            @PathVariable Long postId) {
+        return new ResponseEntity<>(commentService.saveComment(comment, userId, postId), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

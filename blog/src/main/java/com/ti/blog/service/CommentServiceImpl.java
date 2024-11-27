@@ -1,11 +1,20 @@
 package com.ti.blog.service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.ti.blog.entity.Category;
 import com.ti.blog.entity.Comment;
+import com.ti.blog.entity.Post;
+import com.ti.blog.entity.User;
+import com.ti.blog.repository.CategoryRepository;
 import com.ti.blog.repository.CommentRepository;
+import com.ti.blog.repository.PostRepository;
+import com.ti.blog.repository.UserRepository;
+import com.ti.blog.exception.NotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -13,14 +22,32 @@ import lombok.AllArgsConstructor;
 @Service
 public class CommentServiceImpl implements CommentService {
     CommentRepository commentRepository;
+    UserRepository userRepository;
+    PostRepository postRepository;
+    CategoryRepository categoryRepository;
 
     @Override
     public Comment getComment(Long id) {
-        return commentRepository.findById(id).get();
+        Optional<Comment> comment = commentRepository.findById(id);
+        Comment unwrappedComment = unwrapComment(comment, id);
+
+        return unwrappedComment;
     }
 
     @Override
-    public Comment saveComment(Comment comment) {
+    public Comment saveComment(Comment comment, Long userId, Long postId) {
+        User user = userRepository.findById(userId).get();
+        // Post post = postRepository.findById(postId).get();
+        // Category category = categoryRepository.findById(postId).get();
+        // Post poste = new Post("Blade runner 2077", "Lorem ipsum dolor is a .....",
+        // LocalDate.now(), LocalDate.now(),
+        // user, category);
+
+        // comment.getPosts().add(post);
+        comment.setAuthor(user);
+        comment.setCreatedAt(LocalDate.now());
+        comment.setUpdatedAt(LocalDate.now());
+
         return commentRepository.save(comment);
     }
 
@@ -32,5 +59,12 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getComments() {
         return (List<Comment>) commentRepository.findAll();
+    }
+
+    static Comment unwrapComment(Optional<Comment> entity, Long id) {
+        if (entity.isPresent())
+            return entity.get();
+        else
+            throw new NotFoundException(id, "Comment");
     }
 }

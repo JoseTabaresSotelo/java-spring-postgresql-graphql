@@ -1,5 +1,7 @@
 package com.ti.blog.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,6 @@ import com.ti.blog.service.PostService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -26,13 +27,14 @@ public class PostController {
     PostService postService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPost(@RequestParam String param) {
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Post> getPost(@PathVariable Long id) {
+        return new ResponseEntity<>(postService.getPost(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Post> postMethodName(@Valid @RequestBody Post post) {
-        return new ResponseEntity<>(postService.savePost(post), HttpStatus.CREATED);
+    @PostMapping("user/{userId}/category/{categoryId}")
+    public ResponseEntity<Post> postMethodName(@Valid @RequestBody Post post, @PathVariable Long userId,
+            @PathVariable Long categoryId) {
+        return new ResponseEntity<>(postService.savePost(post, userId, categoryId), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -41,4 +43,8 @@ public class PostController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Post>> getPosts() {
+        return new ResponseEntity<>(postService.getPosts(), HttpStatus.OK);
+    }
 }

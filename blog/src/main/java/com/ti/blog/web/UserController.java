@@ -49,12 +49,4 @@ public class UserController {
     public ResponseEntity<List<User>> getUsers() {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
-
-    // @GetMapping("/{id}/courses")
-    // public ResponseEntity<Set<Course>> getEnrolledCourses(@PathVariable Long id)
-    // {
-    // return new ResponseEntity<>(userService.getEnrolledCourses(id),
-    // HttpStatus.OK);
-    // }
-
 }

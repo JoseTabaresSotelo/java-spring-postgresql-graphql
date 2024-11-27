@@ -7,7 +7,7 @@ import com.ti.blog.entity.Comment;
 public interface CommentService {
     Comment getComment(Long id);
 
-    Comment saveComment(Comment comment);
+    Comment saveComment(Comment comment, Long userId, Long postId);
 
     void deleteComment(Long id);
 

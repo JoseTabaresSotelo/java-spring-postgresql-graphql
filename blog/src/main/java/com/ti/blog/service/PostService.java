@@ -7,7 +7,7 @@ import com.ti.blog.entity.Post;
 public interface PostService {
     Post getPost(Long id);
 
-    Post savePost(Post post);
+    Post savePost(Post post, Long userId, Long categoryId);
 
     void deletePost(Long id);
 

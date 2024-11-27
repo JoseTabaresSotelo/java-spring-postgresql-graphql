@@ -62,15 +62,11 @@ public class User {
     @Column(name = "update_at", nullable = false)
     private LocalDate updatedAt;
 
-    // @JsonIgnore
-    // @OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-    // private List<Post> posts;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Post> posts;
 
-    // @JsonIgnore
-    // @ManyToMany
-    // @JoinTable(name = "course_users", joinColumns = @JoinColumn(name =
-    // "student_id", referencedColumnName = "id"), inverseJoinColumns =
-    // @JoinColumn(name = "course_id", referencedColumnName = "id"))
-    // private Set<Course> courses;
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Comment> Comments;
 }

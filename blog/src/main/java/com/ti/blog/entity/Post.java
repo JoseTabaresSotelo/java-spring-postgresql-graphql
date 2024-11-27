@@ -1,7 +1,11 @@
 package com.ti.blog.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
@@ -39,18 +44,8 @@ public class Post {
 
     @NotBlank(message = "Name cannot be blank")
     @NonNull
-    @Column(name = "description")
-    private String description;
-
-    @NotBlank(message = "Name cannot be blank")
-    @NonNull
-    @Column(name = "categoryId")
-    private String categoryId;
-
-    @NotBlank(message = "Name cannot be blank")
-    @NonNull
-    @Column(name = "commentId")
-    private String commentId;
+    @Column(name = "body")
+    private String body;
 
     @FutureOrPresent(message = "The birth date must be in the present")
     @NonNull
@@ -59,10 +54,16 @@ public class Post {
 
     @FutureOrPresent(message = "The birth date must be in the present")
     @NonNull
-    @Column(name = "update_at", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private LocalDate updatedAt;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @NonNull
     private User user;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @NonNull
+    private Category category;
 }
