@@ -25,6 +25,8 @@ public class PostServiceImpl implements PostService {
     CategoryRepository categoryRepository;
     CommentRepository commentRepository;
 
+    List<User> userHelper;
+
     @Override
     public Post getPost(Long id) {
         return postRepository.findById(id).get();
@@ -32,10 +34,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post savePost(Post post, Long userId, Long categoryId) {
-        User user = userRepository.findById(userId).get();
         Category category = categoryRepository.findById(categoryId).get();
+        Optional<User> user = userRepository.findById(userId);
+        User unwrappedStudent = UserServiceImpl.unwrapUser(user, userId);
 
-        post.setUser(user);
+        this.userHelper.add(unwrappedStudent);
+        post.setUsers(userHelper);
         post.setCategory(category);
         post.setCreatedAt(LocalDate.now());
         post.setUpdatedAt(LocalDate.now());

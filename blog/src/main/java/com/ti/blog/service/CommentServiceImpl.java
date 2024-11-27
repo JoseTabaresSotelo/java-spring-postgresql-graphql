@@ -37,13 +37,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment saveComment(Comment comment, Long userId, Long postId) {
         User user = userRepository.findById(userId).get();
-        // Post post = postRepository.findById(postId).get();
-        // Category category = categoryRepository.findById(postId).get();
-        // Post poste = new Post("Blade runner 2077", "Lorem ipsum dolor is a .....",
-        // LocalDate.now(), LocalDate.now(),
-        // user, category);
+        Post post = postRepository.findById(postId).get();
 
-        // comment.getPosts().add(post);
+        comment.setPost(post);
         comment.setAuthor(user);
         comment.setCreatedAt(LocalDate.now());
         comment.setUpdatedAt(LocalDate.now());

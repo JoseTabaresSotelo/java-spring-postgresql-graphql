@@ -11,6 +11,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
@@ -62,11 +65,23 @@ public class User {
     @Column(name = "update_at", nullable = false)
     private LocalDate updatedAt;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Post> posts;
+    // @JsonIgnore
+    // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    // private List<Post> posts;
 
     @JsonIgnore
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Comment> Comments;
+
+    // @JsonIgnore
+    // @ManyToMany
+    // @JoinTable(name = "post_user", joinColumns = @JoinColumn(name = "user_id",
+    // referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name =
+    // "post_id", referencedColumnName = "id"))
+    // private List<Post> posts;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "users")
+    private List<Post> posts;
+
 }

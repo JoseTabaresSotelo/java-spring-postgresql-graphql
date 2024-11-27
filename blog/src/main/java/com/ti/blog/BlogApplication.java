@@ -46,17 +46,19 @@ public class BlogApplication implements CommandLineRunner {
 						LocalDate.now())
 		};
 
-		Post[] posts = new Post[] {
-				new Post("How to use React Hooks?", "Lorem ipsum dolor is a ....", LocalDate.now(),
-						LocalDate.now(), users[0], categories[0]),
-				new Post("Blade runner 2077", "Lorem ipsum dolor is a .....", LocalDate.now(), LocalDate.now(),
-						users[1], categories[1])
-		};
+		// Post[] posts = new Post[] {
+		// new Post("How to use React Hooks?", "Lorem ipsum dolor is a ....",
+		// LocalDate.now(),
+		// LocalDate.now(), users, categories[0]),
+		// new Post("Blade runner 2077", "Lorem ipsum dolor is a .....",
+		// LocalDate.now(), LocalDate.now(),
+		// users, categories[1])
+		// };
 
 		for (int i = 0; i < users.length; i++) {
 			userRepository.save(users[i]);
 			categoryRepository.save(categories[i]);
-			postRepository.save(posts[i]);
+			// postRepository.save(posts[i]);
 		}
 
 	}

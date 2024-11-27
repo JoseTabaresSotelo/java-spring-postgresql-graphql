@@ -50,4 +50,8 @@ public class Comment {
     @ManyToOne(optional = false)
     @JoinColumn(name = "author", referencedColumnName = "id")
     private User author;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    private Post post;
 }
