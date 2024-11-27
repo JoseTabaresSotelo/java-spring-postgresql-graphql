@@ -13,4 +13,5 @@ public interface CommentService {
 
     List<Comment> getComments();
 
+    Comment updateComment(String content, Long commentId);
 }

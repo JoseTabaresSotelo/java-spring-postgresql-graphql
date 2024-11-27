@@ -25,21 +25,18 @@ public class PostServiceImpl implements PostService {
     CategoryRepository categoryRepository;
     CommentRepository commentRepository;
 
-    List<User> userHelper;
-
     @Override
     public Post getPost(Long id) {
         return postRepository.findById(id).get();
     }
 
     @Override
-    public Post savePost(Post post, Long userId, Long categoryId) {
+    public Post savePost(Post post, Long categoryId, Long[] userIds) {
         Category category = categoryRepository.findById(categoryId).get();
-        Optional<User> user = userRepository.findById(userId);
-        User unwrappedStudent = UserServiceImpl.unwrapUser(user, userId);
+        List<Long> Ids = List.of(userIds);
+        List<User> Users = (List<User>) userRepository.findAllById(Ids);
 
-        this.userHelper.add(unwrappedStudent);
-        post.setUsers(userHelper);
+        post.setUsers(Users);
         post.setCategory(category);
         post.setCreatedAt(LocalDate.now());
         post.setUpdatedAt(LocalDate.now());

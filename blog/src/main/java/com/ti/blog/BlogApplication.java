@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.ti.blog.entity.User;
 import com.ti.blog.entity.Category;
-import com.ti.blog.entity.Post;
 import com.ti.blog.repository.CategoryRepository;
 import com.ti.blog.repository.PostRepository;
 import com.ti.blog.repository.UserRepository;
@@ -46,20 +45,9 @@ public class BlogApplication implements CommandLineRunner {
 						LocalDate.now())
 		};
 
-		// Post[] posts = new Post[] {
-		// new Post("How to use React Hooks?", "Lorem ipsum dolor is a ....",
-		// LocalDate.now(),
-		// LocalDate.now(), users, categories[0]),
-		// new Post("Blade runner 2077", "Lorem ipsum dolor is a .....",
-		// LocalDate.now(), LocalDate.now(),
-		// users, categories[1])
-		// };
-
 		for (int i = 0; i < users.length; i++) {
 			userRepository.save(users[i]);
 			categoryRepository.save(categories[i]);
-			// postRepository.save(posts[i]);
 		}
-
 	}
 }

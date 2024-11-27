@@ -12,4 +12,6 @@ public interface SampleService {
     void deleteSample(Long id);
 
     List<Sample> getSamples();
+
+    Sample updateSample(Sample sample, Long id);
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ti.blog.entity.Comment;
+import com.ti.blog.entity.Post;
 import com.ti.blog.service.CommentService;
 
 import jakarta.validation.Valid;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @AllArgsConstructor
@@ -35,6 +37,11 @@ public class CommentController {
     @GetMapping("/all")
     public ResponseEntity<List<Comment>> getComments() {
         return new ResponseEntity<>(commentService.getComments(), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Comment> updatePost(@Valid @RequestBody Comment comment, @PathVariable Long id) {
+        return new ResponseEntity<>(commentService.updateComment(comment.getContent(), id), HttpStatus.OK);
     }
 
     @PostMapping("/user/{userId}/post/{postId}")

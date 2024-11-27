@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.ti.blog.entity.Category;
 import com.ti.blog.entity.Comment;
 import com.ti.blog.entity.Post;
 import com.ti.blog.entity.User;
@@ -55,6 +54,15 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getComments() {
         return (List<Comment>) commentRepository.findAll();
+    }
+
+    @Override
+    public Comment updateComment(String content, Long commentId) {
+        Optional<Comment> comment = commentRepository.findById(commentId);
+        Comment unwrappedCpComment = unwrapComment(comment, commentId);
+        unwrappedCpComment.setContent(content);
+
+        return commentRepository.save(unwrappedCpComment);
     }
 
     static Comment unwrapComment(Optional<Comment> entity, Long id) {

@@ -71,8 +71,4 @@ public class Post {
     @ManyToMany
     @JoinTable(name = "post_user", joinColumns = @JoinColumn(name = "post_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     private List<User> users;
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }

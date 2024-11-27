@@ -31,10 +31,10 @@ public class PostController {
         return new ResponseEntity<>(postService.getPost(id), HttpStatus.OK);
     }
 
-    @PostMapping("user/{userId}/category/{categoryId}")
-    public ResponseEntity<Post> postMethodName(@Valid @RequestBody Post post, @PathVariable Long userId,
-            @PathVariable Long categoryId) {
-        return new ResponseEntity<>(postService.savePost(post, userId, categoryId), HttpStatus.CREATED);
+    @PostMapping("category/{categoryId}/users/{userIds}")
+    public ResponseEntity<Post> savePost(@Valid @RequestBody Post post, @PathVariable Long categoryId,
+            @PathVariable Long[] userIds) {
+        return new ResponseEntity<>(postService.savePost(post, categoryId, userIds), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

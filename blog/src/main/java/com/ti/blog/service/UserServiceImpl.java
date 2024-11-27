@@ -3,11 +3,8 @@ package com.ti.blog.service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
 import org.springframework.stereotype.Service;
 
-// import com.ti.blog.entity.Course;
 import com.ti.blog.entity.User;
 import com.ti.blog.exception.UserNotFoundException;
 import com.ti.blog.repository.UserRepository;

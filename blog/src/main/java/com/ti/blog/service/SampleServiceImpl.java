@@ -33,4 +33,12 @@ public class SampleServiceImpl implements SampleService {
     public List<Sample> getSamples() {
         return (List<Sample>) sampleRepository.findAll();
     }
+
+    @Override
+    public Sample updateSample(Sample sample, Long id) {
+        Sample foundSample = sampleRepository.findById(id).get();
+        foundSample.setSample(sample.getSample());
+
+        return sampleRepository.save(foundSample);
+    }
 }
