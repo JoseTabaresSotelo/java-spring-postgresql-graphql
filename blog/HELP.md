@@ -43,6 +43,23 @@ Default locale: en_US, platform encoding: Cp1252
 OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
 ```
 
+### Create DataBase
+
+Run the follow command using PSQL in postgres:
+
+```console
+postgres=# CREATE USER <YOUR_USERNAME> WITH PASSWORD '<YOUR_PASSWORD>';
+postgres=# CREATE DATABASE <YOUR_DATABASE_NAME> OWNER <YOUR_USERNAME>;
+```
+
+You can use postgres user as follow:
+
+```console
+postgres=# CREATE DATABASE blogjava OWNER postgres;
+```
+
+Configure your `.env` file based on your current postgres configuration
+
 ### Runnig Application
 
 Running application with `mvn` if Maven is installed in your machine or use `.mvnw`, the clean option is to clear the application cache dependencies run if the application is crashig by several changes.
