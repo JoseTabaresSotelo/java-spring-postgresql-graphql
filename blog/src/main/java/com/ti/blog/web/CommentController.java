@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ti.blog.entity.Comment;
-import com.ti.blog.entity.Post;
 import com.ti.blog.service.CommentService;
 
 import jakarta.validation.Valid;

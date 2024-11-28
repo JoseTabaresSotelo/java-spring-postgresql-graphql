@@ -33,21 +33,25 @@ public class BlogApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		User[] users = new User[] {
-				new User("jose2077", "Jose", "Tabares", "jose@test.com", LocalDate.now(), LocalDate.now()),
-				new User("diego_yugi", "Diego", "Arroniz", "diego@test.com", LocalDate.now(), LocalDate.now()),
-		};
+		// User[] users = new User[] {
+		// new User("jose2077", "Jose", "Tabares", "jose@test.com", LocalDate.now(),
+		// LocalDate.now()),
+		// new User("diego_yugi", "Diego", "Arroniz", "diego@test.com", LocalDate.now(),
+		// LocalDate.now()),
+		// };
 
-		Category[] categories = new Category[] {
-				new Category("JavaScript", "Blog to talk about JavaScript code", "Open", LocalDate.now(),
-						LocalDate.now()),
-				new Category("Science Fiction", "Science Fiction Blog", "Open", LocalDate.now(),
-						LocalDate.now())
-		};
+		// Category[] categories = new Category[] {
+		// new Category("JavaScript", "Blog to talk about JavaScript code", "Open",
+		// LocalDate.now(),
+		// LocalDate.now()),
+		// new Category("Science Fiction", "Science Fiction Blog", "Open",
+		// LocalDate.now(),
+		// LocalDate.now())
+		// };
 
-		for (int i = 0; i < users.length; i++) {
-			userRepository.save(users[i]);
-			categoryRepository.save(categories[i]);
-		}
+		// for (int i = 0; i < users.length; i++) {
+		// userRepository.save(users[i]);
+		// categoryRepository.save(categories[i]);
+		// }
 	}
 }

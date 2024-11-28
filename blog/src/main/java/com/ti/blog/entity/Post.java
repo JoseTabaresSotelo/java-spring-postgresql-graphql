@@ -50,12 +50,12 @@ public class Post {
 
     @FutureOrPresent(message = "The birth date must be in the present")
     @NonNull
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = true)
     private LocalDate createdAt;
 
     @FutureOrPresent(message = "The birth date must be in the present")
     @NonNull
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = true)
     private LocalDate updatedAt;
 
     @ManyToOne(optional = false)

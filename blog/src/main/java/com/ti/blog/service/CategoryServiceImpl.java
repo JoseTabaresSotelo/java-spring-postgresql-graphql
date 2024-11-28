@@ -1,5 +1,6 @@
 package com.ti.blog.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category saveCategory(Category category) {
+        category.setCreatedAt(LocalDate.now());
+        category.setUpdatedAt(LocalDate.now());
         return categoryRepository.save(category);
     }
 

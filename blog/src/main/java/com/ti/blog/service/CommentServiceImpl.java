@@ -60,7 +60,9 @@ public class CommentServiceImpl implements CommentService {
     public Comment updateComment(String content, Long commentId) {
         Optional<Comment> comment = commentRepository.findById(commentId);
         Comment unwrappedCpComment = unwrapComment(comment, commentId);
+
         unwrappedCpComment.setContent(content);
+        unwrappedCpComment.setUpdatedAt(LocalDate.now());
 
         return commentRepository.save(unwrappedCpComment);
     }

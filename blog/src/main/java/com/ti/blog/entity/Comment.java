@@ -39,12 +39,12 @@ public class Comment {
 
     @FutureOrPresent(message = "The birth date must be in the present")
     @NonNull
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = true)
     private LocalDate createdAt;
 
     @FutureOrPresent(message = "The birth date must be in the present")
     @NonNull
-    @Column(name = "update_at", nullable = false)
+    @Column(name = "update_at", nullable = true)
     private LocalDate updatedAt;
 
     @ManyToOne(optional = false)
