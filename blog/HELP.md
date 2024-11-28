@@ -58,6 +58,14 @@ You can use postgres user as follow:
 postgres=# CREATE DATABASE blogjava OWNER postgres;
 ```
 
+Use the follow the configuration if you don't want to use postgres and use JPA instead delete the spring properties
+
+```
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2
+spring.datasource.url=jdbc:h2:mem:grade-submission
+```
+
 Configure your `.env` file based on your current postgres configuration
 
 ### Runnig Application
